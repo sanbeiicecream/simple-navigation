@@ -41,6 +41,8 @@ if(os.isAndroid || os.isPhone || os.isTablet) {
 
     })
 
+
+
     $(function($){
         loadSite()
     })
@@ -264,6 +266,25 @@ if(os.isAndroid || os.isPhone || os.isTablet) {
         
     })
 
+    $($search_frame).on("keyup", (e) => {
+        let val = $search_frame.val()
+        let ev = e || window.event || arguments.callee.caller.arguments[0];
+            if(ev&&ev.keyCode === 13){
+                if(val === ""){
+                    location.href = "https://www.baidu.com"
+                }
+                else if(val.substr(0, 4) === "http"){
+                    location.href = val
+                }else if(val.substr(0, 3) === "www"){
+                    location.href = "https://" + val
+                }else{
+                    location.href = "https://www.baidu.com/s?wd=" + val
+                }
+                $search_frame.val("")
+            }
+        
+    })
+
     // TODO 使用location指定 不用表单提交
     $(".searchButton").on("mousedown", (e)=>{
         let val = $search_frame.val()
@@ -278,8 +299,8 @@ if(os.isAndroid || os.isPhone || os.isTablet) {
             location.href = "https://www.baidu.com/s?wd=" + val
         }
         $search_frame.val("")
-        return false;
     })
+
 
     $add.on("mousedown",((e) => {
         if(e.button === 0){
