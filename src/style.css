@@ -2,8 +2,8 @@
   box-sizing: border-box;
 }
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
 a {
   color: inherit;
@@ -12,7 +12,6 @@ a {
   border: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-user-select: none;
-  -moz-user-focus: none;
   -moz-user-select: none;
 }
 a,
@@ -76,7 +75,6 @@ button {
   /* box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.25),
     inset 0px 2px 2px rgba(0, 0, 0, 0.25); */
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
-  border-radius: 8px;
   border: none;
   display: block;
   padding-left: 11px;
@@ -142,31 +140,31 @@ button {
   margin-top: 50%;
   margin-left: 50%;
   transform: translate(-50%, -50%);
-  opacity: 0.1;
+  opacity: 0.3;
   transition: opacity 0.5s linear;
 }
-#add-site {
+#add-window {
   visibility: hidden;
   position: fixed;
   height: 125px;
 }
-#add-site > input {
+#add-window > input {
   width: 300px;
   height: 35px;
   border-radius: 10px;
   margin-bottom: 8px;
   display: block;
-  border: 0px;
+  border: 0;
 }
-#add-site > input {
+#add-window > input {
   caret-color: #1e90ff;
-  padding: 0px 10px;
+  padding: 0 10px;
   font-size: 1em;
 }
 @keyframes display_add {
   from {
     top: 220px;
-    left: 0px;
+    left: 0;
     transform: translate(-50%, -50%);
   }
   to {
@@ -188,35 +186,35 @@ button {
     visibility: hidden;
   }
 }
-.add-site-animation-display {
+.add-window-animation-display {
   animation: display_add 0.5s forwards;
 }
-.add-site-animation-hidden {
+.add-window-animation-hidden {
   animation: hidden_add 1s forwards;
 }
 .confirmButton {
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
   right: 28%;
   font-size: 1em;
 }
 .cancelButton {
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
   left: 5%;
   font-size: 1em;
 }
 
 .changeButton {
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
   right: 28%;
   font-size: 1em;
 }
 
 .selected-site {
   box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.3),
-    inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    inset 0 4px 4px rgba(0, 0, 0, 0.25);
   transform: scale(1.2);
 }
 .unselected-site {
@@ -246,7 +244,7 @@ button {
   background-repeat: no-repeat;
   position: absolute;
   z-index: 1;
-  bottom: 0px;
+  bottom: 0;
   opacity: 0.5;
 }
 
@@ -257,7 +255,7 @@ button {
   .search-frame {
     width: 500px;
   }
-  #add-site {
+  #add-window {
     margin-top: -88px;
   }
   #mainStyle {

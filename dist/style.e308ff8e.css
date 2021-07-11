@@ -2,8 +2,8 @@
   box-sizing: border-box;
 }
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
 a {
   color: inherit;
@@ -12,7 +12,6 @@ a {
   border: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-user-select: none;
-  -moz-user-focus: none;
   -moz-user-select: none;
 }
 a,
@@ -59,7 +58,7 @@ button {
   padding: 50px;
   border-radius: 50%;
   margin: 50px auto 20px;
-  background-image: url("headgif.01c3b2e0.gif");
+  background-image: url("/headgif.101b647a.gif");
   background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -76,7 +75,6 @@ button {
   /* box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.25),
     inset 0px 2px 2px rgba(0, 0, 0, 0.25); */
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
-  border-radius: 8px;
   border: none;
   display: block;
   padding-left: 11px;
@@ -86,7 +84,7 @@ button {
   visibility: hidden;
   height: 25px;
   width: 25px;
-  background-image: url("search.a416e6a1.png");
+  background-image: url("/search.b89461e4.png");
   background-size: contain;
   background-repeat: no-repeat;
   transition: visibility 0.05s;
@@ -97,6 +95,7 @@ button {
   display: block;
   clear: both;
 }
+
 #mainStyle {
   width: 260px;
   margin: 30px auto auto;
@@ -118,6 +117,7 @@ button {
   margin-bottom: 25px;
   transition: all 0.2s;
 }
+
 .site-list span {
   background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%);
   -webkit-background-clip: text;
@@ -134,37 +134,37 @@ button {
 .add {
   width: 28px;
   height: 28px;
-  background-image: url("add1.51ea104d.png");
+  background-image: url("/add1.e81a4303.png");
   background-size: contain;
   background-repeat: no-repeat;
   margin-top: 50%;
   margin-left: 50%;
   transform: translate(-50%, -50%);
-  opacity: 0.1;
+  opacity: 0.3;
   transition: opacity 0.5s linear;
 }
-#add-site {
+#add-window {
   visibility: hidden;
   position: fixed;
   height: 125px;
 }
-#add-site > input {
+#add-window > input {
   width: 300px;
   height: 35px;
   border-radius: 10px;
   margin-bottom: 8px;
   display: block;
-  border: 0px;
+  border: 0;
 }
-#add-site > input {
+#add-window > input {
   caret-color: #1e90ff;
-  padding: 0px 10px;
+  padding: 0 10px;
   font-size: 1em;
 }
 @keyframes display_add {
   from {
     top: 220px;
-    left: 0px;
+    left: 0;
     transform: translate(-50%, -50%);
   }
   to {
@@ -186,33 +186,35 @@ button {
     visibility: hidden;
   }
 }
-.add-site-animation-display {
+.add-window-animation-display {
   animation: display_add 0.5s forwards;
 }
-.add-site-animation-hidden {
+.add-window-animation-hidden {
   animation: hidden_add 1s forwards;
 }
 .confirmButton {
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
   right: 28%;
   font-size: 1em;
 }
 .cancelButton {
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
   left: 5%;
   font-size: 1em;
 }
+
 .changeButton {
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
   right: 28%;
   font-size: 1em;
 }
+
 .selected-site {
   box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.3),
-    inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    inset 0 4px 4px rgba(0, 0, 0, 0.25);
   transform: scale(1.2);
 }
 .unselected-site {
@@ -223,7 +225,7 @@ button {
   display: block;
   width: 20px;
   height: 20px;
-  background-image: url(delete.799a8797.png);
+  background-image: url(/delete.0ca3ab0c.png);
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
@@ -231,19 +233,21 @@ button {
   top: -10px;
   left: -10px;
 }
+
 .edit::after {
   content: "";
   display: block;
   width: 15px;
   height: 15px;
-  background-image: url(edit.fbae778e.png);
+  background-image: url(/edit.4c82a68f.png);
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
   z-index: 1;
-  bottom: 0px;
+  bottom: 0;
   opacity: 0.5;
 }
+
 @media (min-width: 1050px) {
   #headStyle {
     margin-top: 50px;
@@ -251,7 +255,7 @@ button {
   .search-frame {
     width: 500px;
   }
-  #add-site {
+  #add-window {
     margin-top: -88px;
   }
   #mainStyle {
@@ -272,4 +276,5 @@ button {
   }
 }
 
-/*# sourceMappingURL=index.ed40e3f1.css.map */
+
+/*# sourceMappingURL=/style.e308ff8e.css.map */
