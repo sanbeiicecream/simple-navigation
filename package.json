@@ -6,6 +6,12 @@
   "author": "miao <miao@163.com>",
   "license": "MIT",
   "dependencies": {
-    "jquery": "^3.6.0"
+    "global": "^4.4.0",
+    "jquery": "^3.6.0",
+    "parcel": "^2.0.0-beta.2"
+  },
+  "devDependencies": {
+    "cssnano": "^5.0.6",
+    "postcss": "^8.2.15"
   }
 }
