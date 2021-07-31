@@ -29,7 +29,7 @@ export default function phoneJs() {
         let siteArrays = []
         $(".add-container").siblings().remove()
         if(localSiteData.length > 0){
-            append_site(getSiteObject())
+            append_site(JSON.parse(localStorage.getItem("siteData")))
         }
     }
     
