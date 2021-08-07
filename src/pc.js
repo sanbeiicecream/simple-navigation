@@ -24,13 +24,12 @@ export default function pcJs() {
     })
     function loadSite(){
         isDispatch = true
-        let siteArrays = []
         $(".add-container").siblings().remove()
         if(localSiteData.length > 0){
             append_site(JSON.parse(localStorage.getItem("siteData")))
         }
     }
-    $(function ($) {
+    $(function () {
         loadSite()
     })
     
@@ -38,7 +37,7 @@ export default function pcJs() {
         e.stopPropagation()
     })
     
-    $search_frame.focus((e) => {
+    $search_frame.focus(() => {
         if ($addWindow.hasClass("add-window-animation-display")) {
             $search_frame.blur()
         } else {
@@ -72,7 +71,7 @@ export default function pcJs() {
     })
 
 // TODO 使用location指定 不用表单提交
-    $(".searchButton").on("mousedown", (e) => {
+    $(".searchButton").on("mousedown", () => {
         let val = $search_frame.val()
         if (val === "") {
             $search_frame.blur()
@@ -99,7 +98,7 @@ export default function pcJs() {
     }))
     
     
-    $cancelButton.on("mousedown", ((e) => {
+    $cancelButton.on("mousedown", (() => {
         isDispatch = true
         $("ul > li").removeClass()
         $add.css("visibility", "visible")
@@ -154,7 +153,7 @@ export default function pcJs() {
                 editScope.right = basePosition.x + 50
                 if (e.pageX >= deleteScope.left && e.pageX <= deleteScope.right && e.pageY >= deleteScope.top && e.pageY <= deleteScope.bottom) {
                     e.stopPropagation()
-                    if (!$addWindow.hasClass("add-window-animation-display")) {
+                    if ($addWindow.hasClass("") || $addWindow.hasClass("add-window-animation-hidden")) {
                         removeSite(e)
                         // setTimeout(()=>{$add.css("visibility","visible")},100)
                         addSiteFormat()
@@ -173,6 +172,7 @@ export default function pcJs() {
     })
     
     function removeSite(e) {
+        console.log("remove")
         deleteList.push(parseInt($(e.target.children[0]).data("id")))
         $(e.target).remove()
         if ($siteList.children("li").length === 0) {

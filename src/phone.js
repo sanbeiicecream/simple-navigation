@@ -6,6 +6,7 @@ export default function phoneJs() {
     let $addSite = $("#add-window")
     let $cancelButton = $(".cancelButton")
     let $siteList = $(".site-list")
+    let $addWindow = $("#add-window")
     let deleteList = []
     let isDispatch = true
     let localSiteData = JSON.parse(localStorage.getItem("siteData")) || {}
@@ -104,7 +105,6 @@ export default function phoneJs() {
         deleteList.push(parseInt($(e.target.children[0]).data("id")))
         $(e.target).remove()
         if ($siteList.children("li").length === 0) {
-            console.log(e.target)
             addFormat()
             removeLocalStorage(deleteList)
             deleteList.length = 0
@@ -138,7 +138,7 @@ export default function phoneJs() {
             editScope.right = basePosition.x + 50
             if (e.touches[0].pageX >= deleteScope.left && e.touches[0].pageX <= deleteScope.right && e.touches[0].pageY >= deleteScope.top && e.touches[0].pageY <= deleteScope.bottom) {
                 e.stopPropagation()
-                if (!$addSite.hasClass("add-window-animation-display")) {
+                if ($addWindow.hasClass("") || $addWindow.hasClass("add-window-animation-hidden")) {
                     removeSite(e)
                     // setTimeout(()=>{$add.css("visibility","visible")},100)
                     addSiteFormat()
@@ -194,11 +194,7 @@ export default function phoneJs() {
                 clearTimeout(this.time)
                 location.href = getValueAndNameByIndex($(e.target).data("id"))[1]
             }
-            if ($("ul>li").hasClass("edit")) {
-                isDispatch = false
-            } else {
-                isDispatch = true
-            }
+            isDispatch = !$("ul>li").hasClass("edit");
             
         }
     }
