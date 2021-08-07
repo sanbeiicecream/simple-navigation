@@ -1,5 +1,5 @@
-import pcJs from "./pc"
-import phoneJs from "./phone"
+import pcJs from "./pc.js"
+import phoneJs from "./phone.js"
 
 let os = function() {
     let ua = navigator.userAgent,
@@ -18,7 +18,6 @@ let os = function() {
         isPc: isPc
     }
 }()
-
 if(os.isAndroid || os.isPhone || os.isTablet) {
     phoneJs()
 }else if(os.isPc) {
