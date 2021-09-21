@@ -38,18 +38,18 @@ function editSite(dataIndex) {
 function changeSite() {
   let siteName = $('.name').val()
   let siteUrl = $('.url').val()
-  if (siteName && siteUrl) {
-    let siteArray = []
-    if ($('.url').val().indexOf('http') === -1) {
-      siteArray = [$('.name').val(), 'https://' + $('.url').val()]
-    } else {
-      siteArray = [$('.name').val(), $('.url').val()]
-    }
-    addFormat()
-    $('.name').val('')
-    $('.url').val('')
-    editLocalStorage(siteArray, $('#add-window').data('id'))
+  let siteObj = {}
+  if ($('.url').val().indexOf('http') === -1) {
+    siteObj['url'] = 'https://' + $('.url').val()
+  } else {
+    siteObj['url'] = $('.url').val()
   }
+  siteObj['name'] = siteName
+  siteObj['id'] = $('#add-window').data('id')
+  addFormat()
+  $('.name').val('')
+  $('.url').val('')
+  editLocalStorage(siteObj)
 }
 
 function getValueAndNameById(id) {
@@ -69,22 +69,17 @@ function getSiteIndexByName(name) {
   return siteData.lastIndexOf(name)
 }
 
-function editLocalStorage(siteArray, index) {
-  let siteData = JSON.parse(localStorage.getItem('siteData'))
-  siteData[index] = siteArray[0]
-  siteData[index + 1] = siteArray[1]
+function editLocalStorage(siteObj) {
+  let siteData = JSON.parse(localStorage.getItem('siteData') || '[]')
+  const index = siteData.findIndex(item => item.id === siteObj.id)
+  siteData.splice(index, 1, siteObj)
   localStorage.setItem('siteData', JSON.stringify(siteData))
 }
 
-function removeLocalStorage(deleteArray) {
-  let siteData = JSON.parse(localStorage.getItem('siteData'))
-  deleteArray.sort((x, y) => {
-    return y - x
-  })
-  
-  for (let i = 0; i < deleteArray.length; i++) {
-    siteData.splice(deleteArray[i], 2)
-  }
+function removeLocalStorage(id) {
+  let siteData = JSON.parse(localStorage.getItem('siteData') || '[]')
+  const index = siteData.findIndex(item => item.id === id)
+  siteData.splice(index, 1)
   localStorage.setItem('siteData', JSON.stringify(siteData))
 }
 

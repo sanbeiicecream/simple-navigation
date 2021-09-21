@@ -16,7 +16,6 @@ export default function pcJs() {
   let $addWindow = $('#add-window')
   let $cancelButton = $('.cancelButton')
   let $siteList = $('.site-list')
-  let deleteList = []
   let localSiteData = JSON.parse(localStorage.getItem('siteData') || '[]')
   let isEdit = false
   document.onmousedown = ((e) => {
@@ -24,10 +23,6 @@ export default function pcJs() {
     if ($addWindow.css('visibility') === 'hidden') {
       $('ul > li').removeClass()
       $add.css('visibility', 'visible')
-      if (deleteList.length > 0) {
-        removeLocalStorage(deleteList)
-        deleteList.length = 0
-      }
       isEdit = false
     } else if ($('ul>li').hasClass('edit')) {
       $search_frame.blur()
@@ -36,6 +31,7 @@ export default function pcJs() {
   $siteList.on('contextmenu', (e) => {
     e.preventDefault()
   })
+  
   function loadSite() {
     $('.add-container').siblings().remove()
     if (localSiteData.length > 0) {
@@ -121,8 +117,8 @@ export default function pcJs() {
       setTimeout(() => {
         $('.changeButton').text('添加').addClass('confirmButton').removeClass('changeButton')
       }, 150)
-      
     }
+    isEdit = false
   }))
   
   $siteList.on('mouseup', (e) => {
@@ -137,7 +133,7 @@ export default function pcJs() {
         location.href = getValueAndNameById($(e.target).parent().data('id')).url
       }
     }
-    if (e.button === 2 && e.target.tagName === 'LI' || e.target.tagName === 'SPAN') {
+    if (e.button === 2 && e.target.tagName === 'LI' || e.button === 2 && e.target.tagName === 'SPAN') {
       isEdit = true
       if (!$('ul>li').hasClass('edit')) {
         $('ul>li').addClass('selected-site')
@@ -179,32 +175,31 @@ export default function pcJs() {
   })
   
   function removeSite(e) {
-    deleteList.push(parseInt($(e.target.children[0]).data('id')))
     $(e.target).remove()
     if ($siteList.children('li').length === 0) {
       addFormat()
-      removeLocalStorage(deleteList)
-      deleteList.length = 0
     }
+    removeLocalStorage($(e.target).data('id'))
   }
   
   $addWindow.on('mousedown', (e) => {
+    let site_name = $('.name').val()
+    let site_url = $('.url').val()
     if ($(e.target).text() === '添加') {
-      let site_name = $('.name').val()
-      let site_url = $('.url').val()
       if (site_name && site_url) {
         addSite()
         addSiteFormat()
       }
-      
     }
     if ($(e.target).text() === '修改') {
-      changeSite()
-      loadSite()
-      $('.changeButton').text('添加').addClass('confirmButton').removeClass('changeButton')
-      addSiteFormat()
+      if (site_name && site_url) {
+        changeSite()
+        loadSite()
+        $('.changeButton').text('添加').addClass('confirmButton').removeClass('changeButton')
+        addSiteFormat()
+      }
     }
-    
+    isEdit = false
   })
   
   
