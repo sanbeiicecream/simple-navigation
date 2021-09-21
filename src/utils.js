@@ -27,9 +27,9 @@ function createId() {
 }
 
 function editSite(dataIndex) {
-  let siteArray = getValueAndNameById(dataIndex)
-  $('.name').val(siteArray[0])
-  $('.url').val(siteArray[1])
+  let siteObj = getValueAndNameById(dataIndex)
+  $('.name').val(siteObj.name)
+  $('.url').val(siteObj.url)
   $('.confirmButton').text('修改').addClass('changeButton').removeClass('confirmButton')
   addSiteAnimation()
   $('#add-window').attr('data-id', dataIndex)

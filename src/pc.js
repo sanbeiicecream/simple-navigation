@@ -5,7 +5,6 @@ import {
   editSite,
   changeSite,
   addLocalStorage,
-  getSiteIndexByName,
   removeLocalStorage,
   getValueAndNameById,
   createId
@@ -18,11 +17,11 @@ export default function pcJs() {
   let $cancelButton = $('.cancelButton')
   let $siteList = $('.site-list')
   let deleteList = []
-  let isDispatch = true
   let localSiteData = JSON.parse(localStorage.getItem('siteData') || '[]')
   let isEdit = false
   let isDelete = false
-  document.onmousedown = (() => {
+  document.onmousedown = ((e) => {
+    if (e.target.tagName === 'LI' || e.target.tagName === 'SPAN') return
     if ($addWindow.css('visibility') === 'hidden') {
       $('ul > li').removeClass()
       $add.css('visibility', 'visible')
@@ -30,10 +29,10 @@ export default function pcJs() {
         removeLocalStorage(deleteList)
         deleteList.length = 0
       }
+      isEdit = false
     } else if ($('ul>li').hasClass('edit')) {
       $search_frame.blur()
     }
-    isEdit = false
   })
   
   function loadSite() {
@@ -83,7 +82,7 @@ export default function pcJs() {
     }
     
   })
-
+  
   $('.searchButton').on('mousedown', () => {
     let val = $search_frame.val()
     if (val === '') {
@@ -112,7 +111,6 @@ export default function pcJs() {
   
   
   $cancelButton.on('mousedown', (() => {
-    isDispatch = true
     $('ul > li').removeClass()
     $add.css('visibility', 'visible')
     $addWindow.removeClass()
@@ -128,12 +126,13 @@ export default function pcJs() {
   
   $siteList.on('mouseup', (e) => {
     e.preventDefault()
+    if (!e.target.tagName) return
     if (e.target.tagName === 'LI') {
-      if (e.button === 0) {
+      if (e.button === 0 && !isEdit) {
         location.href = getValueAndNameById($(e.target).data('id')).url
       }
-    }else if (e.target.tagName === 'SPAN'){
-      if (e.button === 0) {
+    } else if (e.target.tagName === 'SPAN') {
+      if (e.button === 0 && !isEdit) {
         location.href = getValueAndNameById($(e.target).parent().data('id')).url
       }
     }
@@ -150,36 +149,28 @@ export default function pcJs() {
   })
   
   $siteList.on('mousedown', (e) => {
-    if (e.button === 0) {
-      if ($('.delete')[0] !== null && $('.delete')[0] !== undefined) {
-        isDispatch = false
-        let deleteScope = {}
-        let editScope = {}
-        let basePosition = e.target.getBoundingClientRect()
-        if (e.target.tagName === 'SPAN') {
-          basePosition = e.target.parentNode.getBoundingClientRect()
+    if (e.button === 0 && isEdit) {
+      let deleteScope = {}
+      let basePosition = e.target.getBoundingClientRect()
+      if (e.target.tagName === 'SPAN') {
+        basePosition = e.target.parentNode.getBoundingClientRect()
+      }
+      deleteScope.top = basePosition.y - 10
+      deleteScope.bottom = deleteScope.top + 20
+      deleteScope.left = basePosition.x - 10
+      deleteScope.right = deleteScope.left + 20
+      if (e.pageX >= deleteScope.left && e.pageX <= deleteScope.right && e.pageY >= deleteScope.top && e.pageY <= deleteScope.bottom) {
+        e.stopPropagation()
+        if ($addWindow.hasClass('') || $addWindow.hasClass('add-window-animation-hidden')) {
+          removeSite(e)
+          addSiteFormat()
         }
-        deleteScope.top = basePosition.y - 10
-        deleteScope.bottom = deleteScope.top + 20
-        deleteScope.left = basePosition.x - 10
-        deleteScope.right = deleteScope.left + 20
-        editScope.top = basePosition.y
-        editScope.bottom = basePosition.y + 50
-        editScope.left = basePosition.x
-        editScope.right = basePosition.x + 50
-        if (e.pageX >= deleteScope.left && e.pageX <= deleteScope.right && e.pageY >= deleteScope.top && e.pageY <= deleteScope.bottom) {
-          e.stopPropagation()
-          if ($addWindow.hasClass('') || $addWindow.hasClass('add-window-animation-hidden')) {
-            removeSite(e)
-            addSiteFormat()
-          }
-        } else if (e.pageX >= editScope.left && e.pageX <= editScope.right && e.pageY >= editScope.top && e.pageY <= editScope.bottom) {
-          e.stopPropagation()
-          if (e.target.tagName === 'LI') {
-            editSite($(e.target.children[0]).data('id'))
-          } else if (e.target.tagName === 'SPAN') {
-            editSite($(e.target).data('id'))
-          }
+      } else {
+        e.stopPropagation()
+        if (e.target.tagName === 'LI') {
+          editSite($(e.target).data('id'))
+        } else if (e.target.tagName === 'SPAN') {
+          editSite($(e.target).parent().data('id'))
         }
       }
     }
@@ -187,7 +178,6 @@ export default function pcJs() {
   })
   
   function removeSite(e) {
-    console.log('remove')
     deleteList.push(parseInt($(e.target.children[0]).data('id')))
     $(e.target).remove()
     if ($siteList.children('li').length === 0) {
