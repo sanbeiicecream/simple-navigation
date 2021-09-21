@@ -19,7 +19,6 @@ export default function pcJs() {
   let deleteList = []
   let localSiteData = JSON.parse(localStorage.getItem('siteData') || '[]')
   let isEdit = false
-  let isDelete = false
   document.onmousedown = ((e) => {
     if (e.target.tagName === 'LI' || e.target.tagName === 'SPAN') return
     if ($addWindow.css('visibility') === 'hidden') {
@@ -34,7 +33,9 @@ export default function pcJs() {
       $search_frame.blur()
     }
   })
-  
+  $siteList.on('contextmenu', (e) => {
+    e.preventDefault()
+  })
   function loadSite() {
     $('.add-container').siblings().remove()
     if (localSiteData.length > 0) {
@@ -136,7 +137,7 @@ export default function pcJs() {
         location.href = getValueAndNameById($(e.target).parent().data('id')).url
       }
     }
-    if (e.button === 2) {
+    if (e.button === 2 && e.target.tagName === 'LI' || e.target.tagName === 'SPAN') {
       isEdit = true
       if (!$('ul>li').hasClass('edit')) {
         $('ul>li').addClass('selected-site')
