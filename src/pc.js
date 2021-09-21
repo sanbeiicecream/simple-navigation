@@ -17,6 +17,15 @@ export default function pcJs() {
   let $cancelButton = $('.cancelButton')
   let $siteList = $('.site-list')
   let localSiteData = JSON.parse(localStorage.getItem('siteData') || '[]')
+  if (localSiteData.length === 0) {
+    localSiteData = [{'name': '哔哩哔哩', 'url': 'https://www.bilibili.com', 'id': 0}, {
+      'name': 'ACFUN',
+      'url': 'https://www.acfun.cn/',
+      'id': 1
+    }]
+    localStorage.setItem('maxId', '1')
+    localStorage.setItem('siteData', JSON.stringify(localSiteData))
+  }
   let isEdit = false
   document.onmousedown = ((e) => {
     if (e.target.tagName === 'LI' || e.target.tagName === 'SPAN') return
