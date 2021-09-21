@@ -54,7 +54,7 @@ function changeSite() {
 
 function getValueAndNameById(id) {
   let siteData = JSON.parse(localStorage.getItem('siteData'))
-  return siteData.find(item => item.id = id)
+  return siteData.find(item => item.id === id)
 }
 
 

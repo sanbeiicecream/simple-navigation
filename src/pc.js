@@ -128,10 +128,8 @@ export default function pcJs() {
   
   $siteList.on('mouseup', (e) => {
     e.preventDefault()
-    console.log(e.target)
     if (e.target.tagName === 'LI') {
       if (e.button === 0) {
-        console.log(getValueAndNameById($(e.target).data('id')).url)
         location.href = getValueAndNameById($(e.target).data('id')).url
       }
     }else if (e.target.tagName === 'SPAN'){
