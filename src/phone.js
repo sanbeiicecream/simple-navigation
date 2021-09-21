@@ -203,6 +203,7 @@ export default function phoneJs() {
         for (let i = 0; i < siteObjects.length; i += 2) {
             let $newLi = $(`
                 <li>
+                    <span>${siteObjects[i].slice(1,1)}</span>
                     <span data-id=${getSiteIndexByName(siteObjects[i])}> ${siteObjects[i]}
                     </span>
                 </li>
