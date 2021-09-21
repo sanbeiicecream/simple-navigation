@@ -7,7 +7,8 @@ import {
   addLocalStorage,
   getSiteIndexByName,
   removeLocalStorage,
-  getValueAndNameByIndex
+  getValueAndNameById,
+  createId
 } from './utils'
 
 export default function pcJs() {
@@ -18,7 +19,9 @@ export default function pcJs() {
   let $siteList = $('.site-list')
   let deleteList = []
   let isDispatch = true
-  let localSiteData = JSON.parse(localStorage.getItem('siteData')) || {}
+  let localSiteData = JSON.parse(localStorage.getItem('siteData') || '[]')
+  let isEdit = false
+  let isDelete = false
   document.onmousedown = (() => {
     if ($addWindow.css('visibility') === 'hidden') {
       $('ul > li').removeClass()
@@ -30,14 +33,13 @@ export default function pcJs() {
     } else if ($('ul>li').hasClass('edit')) {
       $search_frame.blur()
     }
-    
+    isEdit = false
   })
   
   function loadSite() {
-    isDispatch = true
     $('.add-container').siblings().remove()
     if (localSiteData.length > 0) {
-      append_site(JSON.parse(localStorage.getItem('siteData')))
+      appendSite(JSON.parse(localStorage.getItem('siteData')))
     }
   }
   
@@ -82,7 +84,6 @@ export default function pcJs() {
     
   })
 
-// TODO 使用location指定 不用表单提交
   $('.searchButton').on('mousedown', () => {
     let val = $search_frame.val()
     if (val === '') {
@@ -127,14 +128,19 @@ export default function pcJs() {
   
   $siteList.on('mouseup', (e) => {
     e.preventDefault()
-    if (e.target.tagName === 'SPAN') {
+    console.log(e.target)
+    if (e.target.tagName === 'LI') {
       if (e.button === 0) {
-        if (isDispatch) {
-          location.href = getValueAndNameByIndex($(e.target).data('id'))[1]
-        }
+        console.log(getValueAndNameById($(e.target).data('id')).url)
+        location.href = getValueAndNameById($(e.target).data('id')).url
+      }
+    }else if (e.target.tagName === 'SPAN'){
+      if (e.button === 0) {
+        location.href = getValueAndNameById($(e.target).parent().data('id')).url
       }
     }
     if (e.button === 2) {
+      isEdit = true
       if (!$('ul>li').hasClass('edit')) {
         $('ul>li').addClass('selected-site')
         setTimeout(() => {
@@ -167,7 +173,6 @@ export default function pcJs() {
           e.stopPropagation()
           if ($addWindow.hasClass('') || $addWindow.hasClass('add-window-animation-hidden')) {
             removeSite(e)
-            // setTimeout(()=>{$add.css("visibility","visible")},100)
             addSiteFormat()
           }
         } else if (e.pageX >= editScope.left && e.pageX <= editScope.right && e.pageY >= editScope.top && e.pageY <= editScope.bottom) {
@@ -214,12 +219,12 @@ export default function pcJs() {
   })
   
   
-  function append_site(siteObjects) {
-    for (let i = 0; i < siteObjects.length; i += 2) {
+  function appendSite(siteObjects) {
+    siteObjects.forEach(item => {
       let $newLi = $(`
-                <li data-id=${getSiteIndexByName(siteObjects[i])}>
-                    <span>${siteObjects[i].slice(0, 1)}</span>
-                    <span>${siteObjects[i]}
+                <li data-id=${item.id}>
+                    <span>${item.name.slice(0, 1)}</span>
+                    <span>${item.name}
                     </span>
                 </li>
             `)
@@ -227,7 +232,7 @@ export default function pcJs() {
       $newLi.on('contextmenu', (e) => {
         e.preventDefault()
       })
-    }
+    })
   }
   
   function addSite() {
@@ -240,8 +245,9 @@ export default function pcJs() {
       } else {
         siteObj = {name: site_name, url: site_url}
       }
+      siteObj['id'] = createId()
       addLocalStorage(siteObj)
-      append_site(siteObj)
+      appendSite([siteObj])
       addFormat()
       $('.name').val('')
       $('.url').val('')

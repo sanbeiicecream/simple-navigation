@@ -20,7 +20,6 @@ function addSiteAnimation() {
   // TODO 添加蒙版效果
 }
 
-
 function createId() {
   const maxId = JSON.parse(localStorage.getItem('maxId') || '-1') + 1
   localStorage.setItem('maxId', maxId + '')
@@ -28,7 +27,7 @@ function createId() {
 }
 
 function editSite(dataIndex) {
-  let siteArray = getValueAndNameByIndex(dataIndex)
+  let siteArray = getValueAndNameById(dataIndex)
   $('.name').val(siteArray[0])
   $('.url').val(siteArray[1])
   $('.confirmButton').text('修改').addClass('changeButton').removeClass('confirmButton')
@@ -53,14 +52,13 @@ function changeSite() {
   }
 }
 
-function getValueAndNameByIndex(index) {
+function getValueAndNameById(id) {
   let siteData = JSON.parse(localStorage.getItem('siteData'))
-  return [siteData[index], siteData[index + 1]]
+  return siteData.find(item => item.id = id)
 }
 
 
 function addLocalStorage(siteObj) {
-  siteObj['id'] = createId()
   const siteData = JSON.parse(localStorage.getItem('siteData') || '[]')
   siteData.push(siteObj)
   localStorage.setItem('siteData', JSON.stringify(siteData))
@@ -100,5 +98,6 @@ export {
   getSiteIndexByName,
   editLocalStorage,
   removeLocalStorage,
-  getValueAndNameByIndex
+  getValueAndNameById,
+  createId
 }
