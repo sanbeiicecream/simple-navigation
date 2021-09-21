@@ -218,7 +218,7 @@ export default function pcJs() {
     for (let i = 0; i < siteObjects.length; i += 2) {
       let $newLi = $(`
                 <li data-id=${getSiteIndexByName(siteObjects[i])}>
-                    <span>${siteObjects[i].slice(0,1)}</span>
+                    <span>${siteObjects[i].slice(0, 1)}</span>
                     <span>${siteObjects[i]}
                     </span>
                 </li>
@@ -234,18 +234,17 @@ export default function pcJs() {
     let site_name = $('.name').val()
     let site_url = $('.url').val()
     if (site_name && site_url) {
-      let siteArray = []
-      if ($('.url').val().indexOf('http') === -1) {
-        siteArray = [$('.name').val(), 'https://' + $('.url').val()]
+      let siteObj = {}
+      if (site_url.indexOf('http') === -1) {
+        siteObj = {name: site_name, url: 'https://' + site_url}
       } else {
-        siteArray = [$('.name').val(), $('.url').val()]
+        siteObj = {name: site_name, url: site_url}
       }
-      addLocalStorage(siteArray)
-      append_site(siteArray)
+      addLocalStorage(siteObj)
+      append_site(siteObj)
       addFormat()
       $('.name').val('')
       $('.url').val('')
-      
     }
   }
 }
