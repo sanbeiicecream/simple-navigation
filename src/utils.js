@@ -8,7 +8,7 @@ function addSiteFormat() {
     $('.url').val('')
     $('.name').val('')
   }, 150)
-  $('.add').removeClass('add-window-animation-display')
+  $('#add-window').removeClass('add-window-animation-display')
   $('#add-window').addClass('add-window-animation-hidden')
 }
 
