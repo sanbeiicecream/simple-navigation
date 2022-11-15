@@ -16,6 +16,7 @@ a {
 }
 body{
   font-family: -apple-system, "Noto Sans", "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Source Han Sans SC", "Source Han Sans CN", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+  overflow: hidden;
 }
 a,
 a:hover,
@@ -279,4 +280,15 @@ button {
     height: 50px;
     margin-right: 20px;
   }
+}
+
+.label{
+  float: left;
+  background-color: skyblue;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.recovery_animation{
+  transition: transform 0.2s linear;
 }

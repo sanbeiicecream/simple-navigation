@@ -1,50 +1,48 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport"
-          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"
+    />
     <title>simple navigation</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
-
-<header id="headStyle">
-    <div class="headGif"></div>
-    <div id="search">
+  <body>
+    <header id="headStyle">
+      <div class="headGif"></div>
+      <div id="search">
         <label>
-            <input class="search-frame" name="wd" autocomplete=off>
+          <input class="search-frame" name="wd" autocomplete="off" />
         </label>
         <button>
-            <div class="searchButton"></div>
+          <div class="searchButton"></div>
         </button>
-    </div>
-</header>
-<main class="mainStyle">
-    <ul class="site-list clearfix">
-        <div class="add-container">
-            <div class="add"></div>
-        </div>
-    </ul>
+      </div>
+    </header>
+    <main class="mainStyle">
+      <div class="site-list clearfix">
+        <!-- <div class="add-container">
+          <div class="add"></div>
+        </div> -->
+      </div>
 
-    <div id="add-window">
+      <div id="add-window">
         <label>
-            <input class="name" placeholder="输入标题">
+          <input class="name" placeholder="输入标题" />
         </label>
         <label>
-            <input class="url" placeholder="输入网址链接">
+          <input class="url" placeholder="输入网址链接" />
         </label>
         <button class="cancelButton">取消</button>
         <button class="confirmButton">添加</button>
-    </div>
-</main>
-
-
-<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
-<script src="main.js"></script>
-</body>
-
+      </div>
+    </main>
+    <script src="../bin/jquery.min.js"></script>
+    <!-- <script src="main.js" type="module"></script> -->
+    <script src="main1.js" type="module"></script>
+  </body>
 </html>
