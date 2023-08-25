@@ -1,0 +1,191 @@
+:root {
+  --labelColor: skyblue;
+  --labelWidth: 80px;
+  --labelHeight: 80px;
+  --one-line: 6;
+  --label-width: 80px;
+  --label-margin: 20px;
+  --label-height: 80px;
+  --searchbar-background-alpha: 0.1;
+}
+
+.mainStyle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.label-list {
+  display: grid;
+  grid-template-columns: repeat(var(--one-line), 1fr);
+  /* justify-content: flex-start; */
+  /* align-items: center; */
+  /* flex-wrap: wrap; */
+  width: calc(
+    var(--one-line) * (var(--label-width) + 2 * var(--label-margin))
+  ) !important;
+}
+
+.add-button-wrapper {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  .add-button {
+    width: 28px;
+    height: 28px;
+    background-image: url('../images/add1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.3;
+    transition: opacity 0.5s linear;
+  }
+}
+.edit-window {
+  position: fixed;
+  border-radius: 8px;
+  transform: translateX(-2000px);
+  left: 0;
+  top: 18%;
+  background-color: rgba(255, 255, 204, 0.2);
+  > label {
+    display: block;
+  }
+
+  input {
+    width: 300px;
+    height: 50px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    display: block;
+    caret-color: #1e90ff;
+    padding: 0 10px;
+    font-size: 18px;
+    border: 0;
+    &::placeholder {
+      color: #ff9999;
+    }
+  }
+
+  .edit-button-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    > button {
+      width: 100%;
+      height: 100px;
+      font-size: 18px;
+      font-weight: bold;
+
+      &.cancelBtn {
+        color: #cccccc;
+      }
+      &.confirmBtn {
+        color: #ffccff;
+      }
+    }
+  }
+}
+
+.search-frame {
+  height: 2.5em;
+  width: 100%;
+  max-width: 30em;
+  min-width: 10em;
+  padding: 0 3em 0 1em;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1.3em;
+  background-color: rgba(255, 255, 255, var(--searchbar-background-alpha));
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  backdrop-filter: blur(10px);
+}
+
+.bg-pic {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 0;
+  background-image: url('https://api.cyrilstudio.top/bing/image.php');
+  background-position: center;
+}
+
+.bg-pic > .blur {
+  width: 100%;
+  height: 100%;
+  /* 调整模糊程度 */
+  backdrop-filter: blur(10px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.content-wrapper {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  z-index: 1;
+}
+
+.label-list li {
+  margin: 20px;
+  display: inline-block;
+  height: var(--label-height);
+  width: var(--label-width);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.label-list li:-moz-drag-over {
+  border: 1px solid black;
+}
+
+.label {
+  background-color: var(--labelColor);
+}
+
+.label_position {
+  position: absolute;
+}
+
+.recovery_animation {
+  transition: all 0.2s linear;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+/* utils class */
+.text-no-select {
+  user-select: none;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.position-fixed {
+  position: fixed;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.float-left {
+  float: left;
+}
+
+.placeholder {
+  visibility: hidden;
+}

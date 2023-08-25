@@ -1,48 +1,55 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"
-    />
-    <title>simple navigation</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
 
-  <body>
-    <header id="headStyle">
-      <div class="headGif"></div>
-      <div id="search">
-        <label>
-          <input class="search-frame" name="wd" autocomplete="off" />
-        </label>
-        <button>
-          <div class="searchButton"></div>
-        </button>
-      </div>
-    </header>
-    <main class="mainStyle">
-      <div class="site-list clearfix">
-        <!-- <div class="add-container">
-          <div class="add"></div>
-        </div> -->
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+  <title>simple navigation</title>
+  <link rel="stylesheet" href="style/reset.css" />
+  <link rel="stylesheet" href="style/style1.scss" />
+  <link rel="stylesheet" href="style/style.css" />
+</head>
 
-      <div id="add-window">
-        <label>
-          <input class="name" placeholder="输入标题" />
-        </label>
-        <label>
-          <input class="url" placeholder="输入网址链接" />
-        </label>
-        <button class="cancelButton">取消</button>
-        <button class="confirmButton">添加</button>
-      </div>
-    </main>
-    <script src="../bin/jquery.min.js"></script>
-    <!-- <script src="main.js" type="module"></script> -->
-    <script src="main1.js" type="module"></script>
-  </body>
+<body>
+  <div>
+    <div class="bg-pic">
+      <div class="blur"></div>
+    </div>
+    <div class="content-wrapper">
+      <header class="header-wrapper">
+        <!-- <div class="headGif"></div> -->
+        <input class="search-frame" name="wd" autocomplete="off" />
+        <!-- <button>
+              <div class="searchButton"></div>
+            </button> -->
+      </header>
+      <main class="mainStyle">
+        <ul class="label-list text-no-select">
+          <div class="add-button-wrapper">
+            <div class="add-button"></div>
+          </div>
+        </ul>
+
+        <div class="edit-window">
+          <label>
+            <input class="edit-name" placeholder="输入标题" />
+          </label>
+          <label>
+            <input class="edit-url" placeholder="输入网址链接" />
+          </label>
+          <div class="edit-button-wrapper">
+            <button class="cancelBtn">取消</button>
+            <button class="confirmBtn">添加</button>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="../bin/jquery.min.js"></script>
+  <!-- <script src="main.js" type="module"></script> -->
+  <script src="main1.js" type="module"></script>
+</body>
+
 </html>

@@ -1,47 +1,22 @@
-import labelFactory from './labelFactory';
+import 'animate.css'
+import labelFactory from './utils/labelFactory';
+import * as handel from './utils';
+import './utils/evnet1'
 
-labelFactory({
-  width: '100px',
-  height: '100px',
-  className: 'label',
-  name: '1',
-  parentNode: document.querySelector('.site-list'),
-});
-
-labelFactory({
-  width: '100px',
-  height: '100px',
-  className: 'label',
-  name: '2',
-  parentNode: document.querySelector('.site-list'),
+const cacheLabel = handel.getSiteData()
+labelFactory.init({
+  parentNode: document.querySelector('.label-list'),
+  width: '80px',
+  height: '80px',
+  className: ['label'],
+  oneRowCount: 5,
 });
 
-labelFactory({
-  width: '100px',
-  height: '100px',
-  className: 'label',
-  name: '3',
-  parentNode: document.querySelector('.site-list'),
-});
-labelFactory({
-  width: '100px',
-  height: '100px',
-  className: 'label',
-  name: '4',
-  parentNode: document.querySelector('.site-list'),
-});
-labelFactory({
-  width: '100px',
-  height: '100px',
-  className: 'label',
-  name: '5',
-  parentNode: document.querySelector('.site-list'),
-});
-
-labelFactory({
-  width: '100px',
-  height: '100px',
-  className: 'label',
-  name: '6',
-  parentNode: document.querySelector('.site-list'),
-});
+for (let i = 0; i < 8; i++) {
+  labelFactory.create({
+    name: i,
+    currentIndex: i,
+    top: parseInt(i / 5) * (80 + 20) + 'px',
+    left: (i % 5) * (80 + 40) + 'px',
+  });
+}

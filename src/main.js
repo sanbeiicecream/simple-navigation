@@ -1,14 +1,4 @@
-import {
-  addFormat,
-  addSiteFormat,
-  addSiteAnimation,
-  editSite,
-  changeSite,
-  addLocalStorage,
-  removeLocalStorage,
-  getValueAndNameById,
-  createId,
-} from './utils';
+import * as handel from './utils';
 
 window.addEventListener('contextmenu', (e) => {
   e.preventDefault();

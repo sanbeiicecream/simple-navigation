@@ -52,32 +52,38 @@ function changeSite() {
   editLocalStorage(siteObj)
 }
 
+
+
+// siteData数据操作
+function getSiteData() {
+  return JSON.parse(localStorage.getItem('siteData') || '[]')
+}
+
 function getValueAndNameById(id) {
-  let siteData = JSON.parse(localStorage.getItem('siteData'))
+  let siteData = getSiteData()
   return siteData.find(item => item.id === id)
 }
 
-
 function addLocalStorage(siteObj) {
-  const siteData = JSON.parse(localStorage.getItem('siteData') || '[]')
+  const siteData = getSiteData()
   siteData.push(siteObj)
   localStorage.setItem('siteData', JSON.stringify(siteData))
 }
 
 function getSiteIndexByName(name) {
-  let siteData = JSON.parse(localStorage.getItem('siteData'))
+  let siteData = getSiteData()
   return siteData.lastIndexOf(name)
 }
 
 function editLocalStorage(siteObj) {
-  let siteData = JSON.parse(localStorage.getItem('siteData') || '[]')
+  let siteData = getSiteData()
   const index = siteData.findIndex(item => item.id === siteObj.id)
   siteData.splice(index, 1, siteObj)
   localStorage.setItem('siteData', JSON.stringify(siteData))
 }
 
 function removeLocalStorage(id) {
-  let siteData = JSON.parse(localStorage.getItem('siteData') || '[]')
+  let siteData = getSiteData()
   const index = siteData.findIndex(item => item.id === id)
   siteData.splice(index, 1)
   localStorage.setItem('siteData', JSON.stringify(siteData))
@@ -94,5 +100,6 @@ export {
   editLocalStorage,
   removeLocalStorage,
   getValueAndNameById,
-  createId
+  createId,
+  getSiteData
 }
