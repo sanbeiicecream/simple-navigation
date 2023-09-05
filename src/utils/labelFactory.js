@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import utils from "./utils"
 class LabelContainer {
   static container = undefined

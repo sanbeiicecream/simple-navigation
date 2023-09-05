@@ -12,45 +12,42 @@
 </head>
 
 <body>
-  <div>
-    <div class="bg-pic">
-      <div class="blur"></div>
-    </div>
-    <div class="content-wrapper">
-      <header class="search-frame-wrapper">
-        <!-- <div class="headGif"></div> -->
-        <input class="search-frame" name="wd" autocomplete="off" />
-        <!-- <button>
+  <div class="bg-pic">
+    <div class="blur"></div>
+  </div>
+  <header class="search-frame-wrapper">
+    <!-- <div class="headGif"></div> -->
+    <input class="search-frame" name="wd" autocomplete="off" />
+    <!-- <button>
               <div class="searchButton"></div>
             </button> -->
-      </header>
-      <main class="main-wrapper">
-        <ul class="label-list text-no-select">
-          <div class="add-button-wrapper">
-            <div class="add-button"></div>
-          </div>
-        </ul>
-
-        <div class="edit-window">
-          <label>
-            <input class="edit-name" name="name" placeholder="输入标题" />
-          </label>
-          <label>
-            <input class="edit-url" name="url" placeholder="输入网址链接" />
-          </label>
-          <label>
-            <input class="icon-url" name="icon" placeholder="输入图标地址" />
-          </label>
-          <div class="edit-button-wrapper">
-            <button class="cancelBtn">取消</button>
-            <button class="confirmBtn">添加</button>
-            <button class="changeBtn">修改</button>
-          </div>
-        </div>
-      </main>
+  </header>
+  <main class="main-wrapper">
+    <ul class="label-list text-no-select">
+      <div class="add-button-wrapper">
+        <div class="add-button"></div>
+      </div>
+    </ul>
+  </main>
+  <div class="modal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-body">
+      <label>
+        <input class="edit-name" name="name" placeholder="输入标题" />
+      </label>
+      <label>
+        <input class="edit-url" name="url" placeholder="输入网址链接" />
+      </label>
+      <label>
+        <input class="icon-url" name="icon" placeholder="输入图标地址" />
+      </label>
+      <div class="modal-footer">
+        <button class="cancelBtn">取消</button>
+        <button class="confirmBtn">添加</button>
+        <button class="changeBtn">修改</button>
+      </div>
     </div>
   </div>
-  <script src="../bin/jquery.min.js"></script>
   <script src="main.js" type="module"></script>
 </body>
 

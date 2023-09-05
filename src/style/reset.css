@@ -24,7 +24,9 @@ body {
     'Noto Sans CJK SC', 'Source Han Sans SC', 'Source Han Sans CN',
     'Microsoft YaHei', 'Wenquanyi Micro Hei', 'WenQuanYi Zen Hei', 'ST Heiti',
     SimHei, 'WenQuanYi Zen Hei Sharp', sans-serif;
-  overflow: hidden;
+  height: 100vh;
+  overflow: auto;
+  border-top: 1px solid transparent;
 }
 
 a,

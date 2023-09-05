@@ -1,19 +1,20 @@
 import labelFactory from './labelFactory';
 import utils from './utils';
+import $ from 'jquery'
 
 const addBtn = $('.add-button')
-const editWindow = $('.edit-window')
+const modal = $('.modal')
 const cancelBtn = $('.cancelBtn')
 const confirmBtn = $('.confirmBtn')
 const changeBtn = $('.changeBtn')
 const searchFrame = $('.search-frame')
-const inputs = editWindow.children().find('input')
+const inputs = modal.children().find('input')
 
 // 保存编辑的Label实例
 let currentEditInstance = null
 
 // 添加animate.css动画统一的类名
-editWindow.addClass('animate__animated')
+// modal.addClass('animate__animated')
 
 const resetInputsValue = () => {
   inputs.each((index, item) => {
@@ -23,7 +24,8 @@ const resetInputsValue = () => {
 
 function windowOfEditLeave() {
   addBtn.show()
-  editWindow.removeClass("animate__backInLeft").addClass("animate__backOutLeft");
+  modal.hide()
+  // modal.removeClass("animate__backInLeft").addClass("animate__backOutLeft");
 }
 
 addBtn.on('click', () => {
@@ -31,13 +33,14 @@ addBtn.on('click', () => {
   confirmBtn.show()
   changeBtn.hide()
   resetInputsValue()
-  editWindow.removeClass("animate__backOutLeft").addClass("animate__backInLeft");
-  // if (editWindow.hasClass("animate__backInLeft")) {
-  //   editWindow.removeClass("animate__backInLeft").addClass("animate__backOutLeft");
-  // } else if (editWindow.hasClass("animate__backOutLeft")) {
-  //   editWindow.removeClass("animate__backOutLeft").addClass("animate__backInLeft");
+  modal.show()
+  // modal.removeClass("animate__backOutLeft").addClass("animate__backInLeft");
+  // if (modal.hasClass("animate__backInLeft")) {
+  //   modal.removeClass("animate__backInLeft").addClass("animate__backOutLeft");
+  // } else if (modal.hasClass("animate__backOutLeft")) {
+  //   modal.removeClass("animate__backOutLeft").addClass("animate__backInLeft");
   // } else {
-  //   editWindow.addClass("animate__backInLeft");
+  //   modal.addClass("animate__backInLeft");
   // }
 })
 
@@ -89,10 +92,11 @@ document.addEventListener('globalEvent', function (event) {
     })
     confirmBtn.hide()
     changeBtn.show()
-    editWindow.removeClass("animate__backOutLeft").addClass("animate__backInLeft");
+    modal.show()
+    // modal.removeClass("animate__backOutLeft").addClass("animate__backInLeft");
   } else {
-    if (editWindow.hasClass('animate__backInLeft')) {
-      cancelBtn.click()
+    if (modal.is(":visible")) {
+      cancelBtn.trigger("click")
     }
   }
 });
