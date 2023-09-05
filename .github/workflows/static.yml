@@ -26,7 +26,7 @@ jobs:
       - name: Copy Build Artifacts
         run: |
           # 检出当前仓库
-          echo pwd
+          pwd
           git clone https://github.com/${{ github.repository }} /tmp/current-repo
           cd /tmp/current-repo
           git checkout develop
