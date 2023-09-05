@@ -27,16 +27,16 @@ jobs:
         run: |
           # 检出当前仓库
           pwd
+          ls -lh
           git clone https://github.com/${{ github.repository }} ./temDir
           cd temDir
           git checkout develop
 
           # 复制编译结果到当前仓库（假设编译结果在 dist 目录下）
           mv ../output .
-
+          ls -lh
           git config --global user.email "miao@com"
-          git config --global user.name "miao"
-          
+          git config --global user.name "miao
           # 提交更改
           git add .
           git commit -m "Add build artifacts"
