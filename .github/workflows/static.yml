@@ -35,9 +35,10 @@ jobs:
           # 复制编译结果到当前仓库（假设编译结果在 dist 目录下）
           mv ../output .
           ls -lh
+          git init
           git config --global user.email "miao@com"
           git config --global user.name "miao
           # 提交更改
           git add .
-          git commit -m "Add build artifacts"
+          git commit -m "Add build"
           git push origin develop
