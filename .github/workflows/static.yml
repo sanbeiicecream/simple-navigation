@@ -23,3 +23,17 @@ jobs:
 
       - name: Build
         run: npm run build  # 执行项目的编译或构建命令
+      - name: Copy Build Artifacts
+        run: |
+          # 检出当前仓库
+          git clone https://github.com/${{ github.repository }} /tmp/current-repo
+          cd /tmp/current-repo
+          git checkout develop
+
+          # 复制编译结果到当前仓库（假设编译结果在 dist 目录下）
+          cp -r /output /tmp/current-repo
+
+          # 提交更改
+          git add .
+          git commit -m "Add build artifacts"
+          git push origin develop
