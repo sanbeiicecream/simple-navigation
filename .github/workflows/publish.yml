@@ -17,10 +17,10 @@ jobs:
           node-version: 16.x
 
       - name: Install dependencies
-        run: pnpm install # 安装项目的依赖
+        run: yarn install # 安装项目的依赖
 
       - name: Build
-        run: pnpm build # 执行项目的编译或构建命令
+        run: yarn build # 执行项目的编译或构建命令
 
       - name: Deploy Web
         uses: peaceiris/actions-gh-pages@v3
