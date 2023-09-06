@@ -33,7 +33,7 @@ jobs:
           git checkout develop
 
           # 复制编译结果到当前仓库（假设编译结果在 dist 目录下）
-          mv ../output .
+          mv ../output/* ./build
           ls -lha
           git config --global user.email "miao@com"
           git config --global user.name "miao
