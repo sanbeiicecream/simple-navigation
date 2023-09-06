@@ -1,0 +1,32 @@
+name: Publish to gh-pages
+on:
+  repository_dispatch:
+  push:
+    branches:
+      - develop
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2 # 检出代码
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2 # 设置 Node.js 环境
+        with:
+          node-version: 16.x
+
+      - name: Install dependencies
+        run: pnpm install # 安装项目的依赖
+
+      - name: Build
+        run: pnpm build # 执行项目的编译或构建命令
+
+      - name: Deploy Web
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONSDEPLOYKEY }}
+          EXTERNAL_REPOSITORY: sanbeiicecream/simple-navigation
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: ./output
+          commit_message: ${{ github.event.head_commit.message }}
