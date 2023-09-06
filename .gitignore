@@ -1,8 +1,0 @@
-/.idea/
-/.cache/
-/node_modules/
-/.parcel-cache/
-/.vscode/
-/dist/
-/yarn.lock
-/output
